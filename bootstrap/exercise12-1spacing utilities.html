@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spacing Utilities</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .spacing-demo {
+            background-color: #e9ecef;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h2 class="mb-4">Spacing Utilities</h2>
+        
+        <div class="spacing-demo p-5 mb-4">
+            <h4>Padding All Sides (p-5)</h4>
+            <div class="spacing-demo m-4 p-3">
+                Margin 4 (m-4) and Padding 3 (p-3)
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="spacing-demo py-4 px-3">
+                    <h5>Vertical Padding (py-4)</h5>
+                    <p>Horizontal Padding (px-3)</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="spacing-demo mt-3 mb-5 ms-2 me-4">
+                    <h5>Directional Margins</h5>
+                    <p>mt-3 (top), mb-5 (bottom), ms-2 (start), me-4 (end)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="spacing-demo mt-5 p-4">
+            <div class="mx-auto" style="width: 80%;">
+                <h5 class="text-center">Centered with mx-auto</h5>
+                <p class="text-center">This div is centered horizontally using margin auto</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

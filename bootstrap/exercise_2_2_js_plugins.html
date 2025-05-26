@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap JavaScript Plugins</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="display-4 mb-5 text-center">Bootstrap JavaScript Plugins Demo</h1>
+        
+        <div class="row g-4">
+            <!-- Dropdown Demo -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Dropdown Plugin</h5>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                Dropdown button
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tooltip Demo -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Tooltip Plugin</h5>
+                        <button type="button" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="This is a tooltip!">
+                            Hover for tooltip
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Collapse Demo -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Collapse Plugin</h5>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample">
+                            Toggle collapse
+                        </button>
+                        <div class="collapse mt-3" id="collapseExample">
+                            <div class="card card-body">
+                                This content can be toggled with the collapse plugin!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Alert Dismissible -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Alert Plugin</h5>
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS Bundle (includes Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+</body>
+</html>
