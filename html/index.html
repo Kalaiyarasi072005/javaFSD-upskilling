@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HarmonyVille Community Portal</title>
+    <style>
+        /* Unique styling for the portal */
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #ff7e5f;
+            --accent-color: #6b8c42;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        #welcomeBanner {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        section {
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .event-image {
+            border: 3px solid var(--accent-color);
+            border-radius: 5px;
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s;
+        }
+        
+        .event-image:hover {
+            transform: scale(1.03);
+        }
+        
+        td {
+            padding: 1rem;
+            text-align: center;
+            vertical-align: top;
+        }
+        
+        caption {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        textarea {
+            min-height: 120px;
+        }
+        
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            grid-column: span 2;
+        }
+        
+        button:hover {
+            background-color: #5a7d4f;
+        }
+        
+        #outputMessage {
+            grid-column: span 2;
+            padding: 1rem;
+            background-color: #e8f5e9;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        #videoContainer {
+            position: relative;
+            margin: 2rem 0;
+        }
+        
+        #videoStatus {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        video {
+            width: 100%;
+            border-radius: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 2rem;
+        }
+        
+        #charCount {
+            font-size: 0.8rem;
+            color: #666;
+            text-align: right;
+        }
+        
+        #geolocationResult {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #e3f2fd;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Section -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+        <a href="help.html" target="_blank">Help</a>
+    </nav>
+
+    <!-- Welcome Banner Section -->
+    <div id="welcomeBanner">
+        <h1>Welcome to HarmonyVille Community Portal</h1>
+        <p>Your one-stop destination for local events and services</p>
+        <p>Special offer: <span style="color: red; font-weight: bold;">First-time users get 10% off event fees!</span></p>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h2>About Our Community</h2>
+        <p>Welcome to <span class="highlight">HarmonyVille</span>, where neighbors become friends and every event strengthens our community bonds. Our portal helps you stay connected with all the happenings in our vibrant town.</p>
+        
+        <div id="videoContainer">
+            <div id="videoStatus">Video ready to play</div>
+            <video controls oncanplay="document.getElementById('videoStatus').style.display='block'">
+                <source src="community-promo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events">
+        <h2>Upcoming Community Events</h2>
+        
+        <h3>Past Event Gallery</h3>
+        <table>
+            <caption>Memories from our recent gatherings</caption>
+            <tr>
+                <td>
+                    <img src="summer-fair.jpg" alt="Summer Fair" title="Annual Summer Fair" class="event-image" ondblclick="this.style.transform='scale(1.5)'; this.style.zIndex='100'; this.style.position='relative'">
+                    <p>Annual Summer Fair 2023</p>
+                </td>
+                <td>
+                    <img src="harvest-festival.jpg" alt="Harvest Festival" title="Harvest Festival" class="event-image" ondblclick="this.style.transform='scale(1.5)'; this.style.zIndex='100'; this.style.position='relative'">
+                    <p>Harvest Festival</p>
+                </td>
+                <td>
+                    <img src="winter-market.jpg" alt="Winter Market" title="Winter Market" class="event-image" ondblclick="this.style.transform='scale(1.5)'; this.style.zIndex='100'; this.style.position='relative'">
+                    <p>Winter Holiday Market</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="spring-cleanup.jpg" alt="Spring Cleanup" title="Community Spring Cleanup" class="event-image" ondblclick="this.style.transform='scale(1.5)'; this.style.zIndex='100'; this.style.position='relative'">
+                    <p>Community Spring Cleanup</p>
+                </td>
+                <td>
+                    <img src="art-show.jpg" alt="Art Show" title="Local Art Exhibition" class="event-image" ondblclick="this.style.transform='scale(1.5)'; this.style.zIndex='100'; this.style.position='relative'">
+                    <p>Local Art Exhibition</p>
+                </td>
+                <td>
+                    <img src="yoga-class.jpg" alt="Yoga Class" title="Community Yoga Session" class="event-image" ondblclick="this.style.transform='scale(1.5)'; this.style.zIndex='100'; this.style.position='relative'">
+                    <p>Community Yoga Sessions</p>
+                </td>
+            </tr>
+        </table>
+
+        <h3>Event Registration</h3>
+        <form id="eventForm" onsubmit="return handleFormSubmit(event)">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required autofocus placeholder="Enter your full name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" placeholder="123-456-7890" onblur="validatePhone(this)">
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Event Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="eventType">Event Type:</label>
+                <select id="eventType" name="eventType" required onchange="showEventFee(this)">
+                    <option value="">-- Select an event --</option>
+                    <option value="workshop">Community Workshop</option>
+                    <option value="concert">Summer Concert</option>
+                    <option value="market">Farmers Market</option>
+                    <option value="sports">Sports Tournament</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Special Requests:</label>
+                <textarea id="message" name="message" placeholder="Any special accommodations needed?" onkeyup="updateCharCount(this)"></textarea>
+                <div id="charCount">0/200 characters</div>
+            </div>
+            
+            <div id="eventFeeDisplay" class="highlight" style="display: none;"></div>
+            
+            <output id="outputMessage"></output>
+            
+            <button type="submit" onclick="showConfirmation()">Register for Event</button>
+        </form>
+        
+        <div>
+            <button onclick="findNearbyEvents()">Find Nearby Events</button>
+            <div id="geolocationResult"></div>
+        </div>
+        
+        <div>
+            <button onclick="clearPreferences()">Clear My Preferences</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have questions or suggestions? Reach out to our community team!</p>
+        <p>Email: <span class="highlight">community@harmonyville.gov</span></p>
+        <p>Phone: <span class="highlight">(555) 123-4567</span></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 HarmonyVille Community Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Load saved preferences
+        window.onload = function() {
+            const savedEventType = localStorage.getItem('preferredEventType');
+            if (savedEventType) {
+                document.getElementById('eventType').value = savedEventType;
+            }
+            
+            // Warn users if they try to leave the form page with unsaved changes
+            window.onbeforeunload = function() {
+                const form = document.getElementById('eventForm');
+                const inputs = form.querySelectorAll('input, textarea, select');
+                let hasChanges = false;
+                
+                inputs.forEach(input => {
+                    if (input.value !== '') {
+                        hasChanges = true;
+                    }
+                });
+                
+                if (hasChanges) {
+                    return 'You have unsaved changes. Are you sure you want to leave?';
+                }
+            };
+        };
+        
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Save user preference
+            const eventType = document.getElementById('eventType').value;
+            localStorage.setItem('preferredEventType', eventType);
+            
+            // Show confirmation
+            document.getElementById('outputMessage').textContent = `Thank you for registering! We've sent confirmation details to your email.`;
+            document.getElementById('outputMessage').style.display = 'block';
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                event.target.reset();
+                document.getElementById('outputMessage').style.display = 'none';
+            }, 5000);
+            
+            return false;
+        }
+        
+        // Phone validation
+        function validatePhone(input) {
+            const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+            if (input.value && !phoneRegex.test(input.value)) {
+                alert('Please enter a valid phone number in the format 123-456-7890');
+                input.focus();
+            }
+        }
+        
+        // Show event fee when event type is selected
+        function showEventFee(select) {
+            const fees = {
+                'workshop': '$15',
+                'concert': '$25',
+                'market': 'Free',
+                'sports': '$10'
+            };
+            
+            const feeDisplay = document.getElementById('eventFeeDisplay');
+            
+            if (select.value) {
+                feeDisplay.textContent = `Selected event fee: ${fees[select.value]}`;
+                feeDisplay.style.display = 'block';
+            } else {
+                feeDisplay.style.display = 'none';
+            }
+        }
+        
+        // Show confirmation when submit button is clicked
+        function showConfirmation() {
+            console.log('Form submission initiated');
+        }
+        
+        // Update character count for textarea
+        function updateCharCount(textarea) {
+            const charCount = document.getElementById('charCount');
+            const currentLength = textarea.value.length;
+            charCount.textContent = `${currentLength}/200 characters`;
+            
+            if (currentLength > 190) {
+                charCount.style.color = 'red';
+            } else {
+                charCount.style.color = '#666';
+            }
+        }
+        
+        // Find nearby events using geolocation
+        function findNearbyEvents() {
+            const resultDiv = document.getElementById('geolocationResult');
+            
+            if (!navigator.geolocation) {
+                resultDiv.textContent = 'Geolocation is not supported by your browser';
+                resultDiv.style.display = 'block';
+                return;
+            }
+            
+            resultDiv.textContent = 'Locating...';
+            resultDiv.style.display = 'block';
+            
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            };
+            
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    resultDiv.innerHTML = `
+                        <p>Your location: ${lat.toFixed(4)}, ${lng.toFixed(4)}</p>
+                        <p>Nearest events:</p>
+                        <ul>
+                            <li>Community Park (0.5 miles away) - Summer Concert tomorrow</li>
+                            <li>Downtown Plaza (1.2 miles away) - Farmers Market every Saturday</li>
+                        </ul>
+                    `;
+                },
+                function(error) {
+                    let message = '';
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            message = "You denied the request for geolocation.";
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            message = "Location information is unavailable.";
+                            break;
+                        case error.TIMEOUT:
+                            message = "The request to get user location timed out.";
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            message = "An unknown error occurred.";
+                            break;
+                    }
+                    resultDiv.textContent = message;
+                },
+                options
+            );
+        }
+        
+        // Clear user preferences
+        function clearPreferences() {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert('Your preferences have been cleared.');
+            document.getElementById('eventType').value = '';
+            document.getElementById('eventFeeDisplay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
