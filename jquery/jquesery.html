@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique jQuery Solutions</title>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Local jQuery fallback -->
+    <script>
+        if (typeof jQuery == 'undefined') {
+            document.write('<script src="jquery-3.6.0.min.js"><\/script>');
+        }
+    </script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #7f8c8d;
+            margin: 10px;
+            display: inline-block;
+        }
+        #colorBox {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #2c3e50;
+            margin: 20px;
+        }
+        .event-div {
+            padding: 20px;
+            background-color: #f1c40f;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .highlight {
+            background-color: #e74c3c;
+            color: white;
+        }
+        #itemList {
+            margin: 20px 0;
+        }
+        #itemList li {
+            padding: 5px;
+            margin: 3px;
+            background-color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Unique jQuery Exercises</h1>
+
+    <!-- Exercise 1 -->
+    <section id="ex1">
+        <h2>Exercise 1: jQuery Inclusion</h2>
+        <p id="helloWorld">Hello World!</p>
+    </section>
+
+    <!-- Exercise 2 -->
+    <section id="ex2">
+        <h2>Exercise 2: Selecting Elements</h2>
+        <h1 id="changeMe">Original Heading</h1>
+        <p class="para">First paragraph - I'll stay visible</p>
+        <p class="para">Second paragraph - I'll disappear</p>
+        <button id="hidePara">Hide Second Paragraph</button>
+    </section>
+
+    <!-- Exercise 3 -->
+    <section id="ex3">
+        <h2>Exercise 3: jQuery Methods</h2>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <br>
+        <button id="hideBtn">Hide</button>
+        <button id="showBtn">Show</button>
+        <button id="fadeOutBtn">Fade Out</button>
+        <button id="fadeInBtn">Fade In</button>
+        <button id="toggleBtn">Toggle</button>
+        <button id="chainBtn">Chain Effects</button>
+    </section>
+
+    <!-- Exercise 4 -->
+    <section id="ex4">
+        <h2>Exercise 4: DOM Manipulation</h2>
+        <form id="itemForm">
+            <input type="text" id="itemInput" placeholder="Enter an item">
+            <button type="submit">Add Item</button>
+        </form>
+        <button id="removeAllBtn">Remove All Items</button>
+        <ul id="itemList"></ul>
+    </section>
+
+    <!-- Exercise 5 -->
+    <section id="ex5">
+        <h2>Exercise 5: Event Handling</h2>
+        <button id="colorBtn">Change Color</button>
+        <div id="colorBox">Click or double-click the button</div>
+    </section>
+
+    <!-- Exercise 6 -->
+    <section id="ex6">
+        <h2>Exercise 6: Event Helpers</h2>
+        <div class="event-div" id="clickDiv">Click me once</div>
+        <div class="event-div" id="dblclickDiv">Double-click me</div>
+        <div class="event-div" id="hoverDiv">Hover over me</div>
+        <input type="text" id="keyInput" placeholder="Type something here">
+        <p id="keyOutput"></p>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            // Exercise 1
+            console.log($('#helloWorld').text() + " from console");
+            
+            // Exercise 2
+            $('#changeMe').text('Changed Heading with jQuery');
+            $('#hidePara').click(function() {
+                $('.para').eq(1).hide();
+            });
+            
+            // Exercise 3
+            $('#hideBtn').click(function() {
+                $('.box').hide(500);
+            });
+            $('#showBtn').click(function() {
+                $('.box').show(500);
+            });
+            $('#fadeOutBtn').click(function() {
+                $('.box').fadeOut(1000);
+            });
+            $('#fadeInBtn').click(function() {
+                $('.box').fadeIn(1000);
+            });
+            $('#toggleBtn').click(function() {
+                $('.box').toggle(500);
+            });
+            $('#chainBtn').click(function() {
+                $('.box').slideUp(500).delay(1000).slideDown(500).css('background-color', '#3498db');
+            });
+            
+            // Exercise 4
+            $('#itemForm').submit(function(e) {
+                e.preventDefault();
+                const itemText = $('#itemInput').val().trim();
+                if (itemText) {
+                    $('#itemList').append(`<li>${itemText}</li>`);
+                    $('#itemInput').val('');
+                }
+            });
+            $('#removeAllBtn').click(function() {
+                $('#itemList').empty();
+            });
+            
+            // Exercise 5
+            $('#colorBtn').click(function() {
+                $('#colorBox').css('background-color', '#e74c3c');
+            });
+            $('#colorBtn').dblclick(function() {
+                $('#colorBox').css('background-color', '#ffffff');
+            });
+            
+            // Exercise 6
+            $('#clickDiv').click(function() {
+                $(this).toggleClass('highlight');
+            });
+            $('#dblclickDiv').dblclick(function() {
+                $(this).text('You double-clicked me!').css('font-weight', 'bold');
+            });
+            $('#hoverDiv').mouseenter(function() {
+                $(this).text('Mouse entered!').css('background-color', '#2ecc71');
+            });
+            $('#hoverDiv').mouseleave(function() {
+                $(this).text('Hover over me').css('background-color', '#f1c40f');
+            });
+            $('#keyInput').keypress(function(e) {
+                $('#keyOutput').text(`You pressed: ${String.fromCharCode(e.which)} (Key code: ${e.which})`);
+            });
+        });
+    </script>
+</body>
+</html>
